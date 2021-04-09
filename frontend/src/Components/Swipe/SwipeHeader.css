@@ -1,0 +1,57 @@
+.container {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  transition: var(--transition);
+  transform: translateX(var(--translate));
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  font-weight: 400;
+}
+
+.left,
+.right {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: var(--button-width);
+  height: 100%;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.navigationButton {
+  composes: button from '~Components/Link/IconButton.css';
+
+  margin-left: 5px;
+  width: 30px;
+  color: #e1e2e3;
+  white-space: nowrap;
+
+  &:hover {
+    color: $iconButtonHoverLightColor;
+  }
+}

@@ -54,7 +54,7 @@
 
 .titleContainer {
   display: flex;
-  margin-top: -5px
+  margin-top: -5px;
 }
 
 .title {
@@ -88,6 +88,7 @@
   white-space: nowrap;
 }
 
+.bookUpButton,
 .bookNavigationButton {
   composes: button from '~Components/Link/IconButton.css';
 
@@ -173,6 +174,19 @@
 
   .headerContent {
     padding: 15px;
+  }
+
+  .bookNavigationButtons {
+    margin-top: 5px;
+  }
+
+  .bookNavigationButton {
+    display: none;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 50px;
   }
 }
 

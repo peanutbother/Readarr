@@ -102,6 +102,7 @@
   white-space: nowrap;
 }
 
+.authorUpButton,
 .authorNavigationButton {
   composes: button from '~Components/Link/IconButton.css';
 
@@ -184,6 +185,19 @@
 
   .headerContent {
     padding: 15px;
+  }
+
+  .authorNavigationButtons {
+    margin-top: 5px;
+  }
+
+  .authorNavigationButton {
+    display: none;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 50px;
   }
 }
 

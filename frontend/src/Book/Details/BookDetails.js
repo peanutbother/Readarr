@@ -23,6 +23,7 @@ import PageToolbar from 'Components/Page/Toolbar/PageToolbar';
 import PageToolbarButton from 'Components/Page/Toolbar/PageToolbarButton';
 import PageToolbarSection from 'Components/Page/Toolbar/PageToolbarSection';
 import PageToolbarSeparator from 'Components/Page/Toolbar/PageToolbarSeparator';
+import SwipeHeaderConnector from 'Components/Swipe/SwipeHeaderConnector';
 import Tooltip from 'Components/Tooltip/Tooltip';
 import { icons, kinds, sizes, tooltipPositions } from 'Helpers/Props';
 import InteractiveSearchFilterMenuConnector from 'InteractiveSearch/InteractiveSearchFilterMenuConnector';
@@ -143,6 +144,7 @@ class BookDetails extends Component {
       previousBook,
       nextBook,
       isSearching,
+      isSmallScreen,
       onMonitorTogglePress,
       onRefreshPress,
       onSearchPress
@@ -158,7 +160,7 @@ class BookDetails extends Component {
       overviewHeight
     } = this.state;
 
-    const marqueeWidth = (titleWidth - 165);
+    const marqueeWidth = titleWidth - (isSmallScreen ? 85 : 165);
 
     return (
       <PageContent title={title}>
@@ -214,7 +216,13 @@ class BookDetails extends Component {
         </PageToolbar>
 
         <PageContentBody innerClassName={styles.innerContentBody}>
-          <div className={styles.header}>
+          <SwipeHeaderConnector
+            className={styles.header}
+            nextTitle={`Go to ${nextBook.title}`}
+            nextLink={`/book/${nextBook.titleSlug}`}
+            prevTitle={`Go to ${previousBook.title}`}
+            prevLink={`/book/${previousBook.titleSlug}`}
+          >
             <div
               className={styles.backdrop}
               style={{
@@ -244,7 +252,7 @@ class BookDetails extends Component {
                         className={styles.monitorToggleButton}
                         monitored={monitored}
                         isSaving={isSaving}
-                        size={40}
+                        size={isSmallScreen ? 30: 40}
                         onPress={onMonitorTogglePress}
                       />
                     </div>
@@ -265,7 +273,7 @@ class BookDetails extends Component {
                     />
 
                     <IconButton
-                      className={styles.bookNavigationButton}
+                      className={styles.bookUpButton}
                       name={icons.ARROW_UP}
                       size={30}
                       title={`Go to ${author.authorName}`}
@@ -388,7 +396,7 @@ class BookDetails extends Component {
                 </Measure>
               </div>
             </div>
-          </div>
+          </SwipeHeaderConnector>
 
           <div className={styles.contentContainer}>
             {
@@ -519,6 +527,7 @@ BookDetails.propTypes = {
   author: PropTypes.object,
   previousBook: PropTypes.object,
   nextBook: PropTypes.object,
+  isSmallScreen: PropTypes.bool.isRequired,
   onMonitorTogglePress: PropTypes.func.isRequired,
   onRefreshPress: PropTypes.func,
   onSearchPress: PropTypes.func.isRequired
